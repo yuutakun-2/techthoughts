@@ -13,7 +13,8 @@ use App\Http\Middleware\MustBeAuthUser;
 use App\Http\Middleware\MustBeGuestUser;
 
 Route::middleware(MustBeAuthUser::class)->group(function() {
-    Route::get('/', [BlogController::class, 'index']);
+    Route::get('/', [BlogController::class, 'home']);
+    Route::get('/blogs', [BlogController::class, 'index']);
     Route::get('/blogs/{blog:slug}', [BlogController::class, 'show']);
     Route::post('/logout', [LogoutController::class, 'destroy']);
 });

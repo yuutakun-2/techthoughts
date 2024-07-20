@@ -9,6 +9,9 @@ use App\Models\User;
 
 class BlogController extends Controller
 {
+    public function home() {
+        return view ('blogs.home');
+    }
     //
     public function index() {
         return view ('blogs.index', [

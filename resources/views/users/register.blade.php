@@ -1,6 +1,6 @@
 <x-layout title="Register">
     <div class="max-w-fit mx-auto my-4 border-2 rounded-lg flex justify-center shadow-lg shadow-cyan-500/50">
-        <div class="flex items-center px-10 "><img src="{{ asset('img/Copy of Tech (1920 x 200 px).png') }}" alt="" class=""></div> 
+        <div class="flex items-center px-10 "><img src="{{ asset('img/logo_banner.png') }}" alt="" class=""></div> 
         <div class="bg-gray-500 w-[0.5px] h-auto my-10"></div>
         <div class="p-10">
             <div class="text-center">

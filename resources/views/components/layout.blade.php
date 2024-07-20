@@ -37,12 +37,13 @@
           <div class="flex flex-shrink-0 items-center">
             <a href="/">
 
-              <img class="h-6 w-auto" src="{{ asset('img/Copy of Tech (1920 x 200 px).png') }}" alt="Your Company">
+              <img class="h-6 w-auto" src="{{ asset('img/logo_banner.png') }}" alt="Your Company">
             </a>
           </div>
           <div class="hidden sm:ml-6 sm:block">
             <div class="flex space-x-4">
               <x-nav-link href="/" :active="request()->is('/')">Home</x-nav-link>
+              <x-nav-link href="/blogs" :active="request()->is('blogs')">Blogs</x-nav-link>
               <x-nav-link href="/community" :active="request()->is('community')">Community</x-nav-link>
             </div>
           </div>
@@ -90,10 +91,6 @@
       </div>
     </div>
   </nav>
-
-  <div class="border-b-2">
-    <h1 class="my-2 mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 font-bold text-3xl py-4 ">{{$title}} Page</h1>
-  </div>
 
   {{$slot}}
 
