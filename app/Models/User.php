@@ -17,6 +17,17 @@ class User extends Authenticatable
         return $this->hasMany(Blog::class);
     }
 
+    //A user belongstomany subscribedBlogs
+    public function subscribedBlogs() {
+        return $this->belongsToMany(Blog::class, 'blog_user');
+    }
+
+
+    //check if user is subscribed
+    public function isSubscribed($blog) {
+        //write logic for checking if user is subscribed 
+        return $this->subscribedBlogs->contains('id', $blog->id);
+    }
     /**
      * The attributes that are mass assignable.
      *

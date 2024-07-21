@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Models\Blog;
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\SubscribeController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LogoutController;
@@ -16,6 +17,7 @@ Route::middleware(MustBeAuthUser::class)->group(function() {
     Route::get('/', [BlogController::class, 'home']);
     Route::get('/blogs', [BlogController::class, 'index']);
     Route::get('/blogs/{blog:slug}', [BlogController::class, 'show']);
+    Route::post('/blogs/{blog:slug}/subscribe', [SubscribeController::class, 'toggle']);
     Route::post('/logout', [LogoutController::class, 'destroy']);
 });
 

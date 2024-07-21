@@ -1,3 +1,4 @@
+
 <x-layout title="View Blade">
   <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
     <h1 class="font-bold text-3xl ">{{$blog->title}}</h1>
@@ -8,6 +9,14 @@
   <!-- Comment box -->
    <div class="mx-auto max-w-7xl px-2 my-4 sm:px-6 lg:px-8">
     <span class="font-bold text-3xl">Comment</span>
+    <form action="/blogs/{{$blog->slug}}/subscribe" method="POST">
+    @csrf
+      @if (auth()->user()->isSubscribed($blog))
+        <button type="submit" class="block bg-blue-500 border rounded-md px-4 py-2 text-white">Unsubscribe</button>
+      @else
+        <button type="submit" class="block bg-blue-500 border rounded-md px-4 py-2 text-white">Subscribe</button>
+      @endif
+    </form>
     <form action="/blogs/{{$blog->slug}}/comments" method="POST">
       @csrf
       <textarea name="body" id="" class="w-1/2 h-[200px] border-4"></textarea>
