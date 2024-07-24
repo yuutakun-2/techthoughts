@@ -1,8 +1,9 @@
 <x-layout>
     <div class="w-full">
         <img src="{{ asset('img/logo_bg.png') }}" alt="" class="object-cover h-[660px] w-full">
+        <link rel="stylesheet" href="{{ asset('css/scrolldown.css') }}">
         <div class="scroll-down"></div>
-        <style>
+        <!-- <style>
             body {
                 background-color: #000;
                 overflow: hidden;
@@ -42,6 +43,6 @@
                     opacity: 0;
                 }
             }
-        </style>
+        </style> -->
     </div>
 </x-layout>

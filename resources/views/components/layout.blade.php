@@ -36,13 +36,11 @@
         <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
           <div class="flex flex-shrink-0 items-center">
             <a href="/">
-
               <img class="h-6 w-auto" src="{{ asset('img/logo_banner.png') }}" alt="Your Company">
             </a>
           </div>
           <div class="hidden sm:ml-6 sm:block">
             <div class="flex space-x-4">
-              <x-nav-link href="/" :active="request()->is('/')">Home</x-nav-link>
               <x-nav-link href="/blogs" :active="request()->is('blogs')">Blogs</x-nav-link>
               <x-nav-link href="/community" :active="request()->is('community')">Community</x-nav-link>
             </div>
