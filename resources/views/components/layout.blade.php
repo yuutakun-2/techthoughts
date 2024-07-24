@@ -44,6 +44,15 @@
             <x-nav-link href="/community" :active="request()->is('community')">Community</x-nav-link>
           </div>
         </div>
+        <!-- Search box -->
+        <div class="relative">
+          <input type="text" placeholder="Search" class="py-2 px-4 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 peer">
+          <div class="absolute inset-y-0 right-4 pl-3 flex items-center pointer-events-none peer-focus:hidden">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="w-[20px] h-auto text-blue-500">
+                  <path fill="currentColor" d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z"/>
+              </svg>
+          </div>
+        </div>
         <!-- Navbar Right Side -->
         <div class="absolute inset-y-0 right-0 flex items-center gap-2 pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
           <button type="button" class="relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
