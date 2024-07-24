@@ -33,19 +33,18 @@
             </svg>
           </button>
         </div>
-        <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
-          <div class="flex flex-shrink-0 items-center">
-            <a href="/">
-              <img class="h-6 w-auto" src="{{ asset('img/logo_banner.png') }}" alt="Your Company">
+        <div class="flex flex-1 justify-center gap-x-4 sm:items-stretch sm:justify-start">
+          <div class="flex items-center">
+            <a href="/" class="rounded-md {{ request()->is('/') ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white' }}">
+              <img class="h-[45px] px-4 py-2" src="{{ asset('img/logo_banner.png') }}" alt="Company">
             </a>
           </div>
-          <div class="hidden sm:ml-6 sm:block">
-            <div class="flex space-x-4">
-              <x-nav-link href="/blogs" :active="request()->is('blogs')">Blogs</x-nav-link>
-              <x-nav-link href="/community" :active="request()->is('community')">Community</x-nav-link>
-            </div>
+          <div class="flex items-center space-x-4">
+            <x-nav-link href="/blogs" :active="request()->is('blogs')">Blogs</x-nav-link>
+            <x-nav-link href="/community" :active="request()->is('community')">Community</x-nav-link>
           </div>
         </div>
+        <!-- Navbar Right Side -->
         <div class="absolute inset-y-0 right-0 flex items-center gap-2 pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
           <button type="button" class="relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
             <span class="absolute -inset-1.5"></span>
