@@ -32,4 +32,24 @@ class BlogController extends Controller
             'users' => User::all()
         ]);
     }
+
+    public function post() {
+        return view ('blogs.post', [
+            'blogs'=> Blog::latest()->filter(request(['query', 'category_id', 'user_id']))->paginate(6),
+            'categories' => Category::all(),
+            'users' => User::all()
+        ]);
+    }
+
+    public function store() {
+        //store title
+        // request()->validate([
+        //     'title' => 'required',
+        //     'body' => 'required',
+        // ])
+        //check category
+        //add image
+        //store body
+        //return back 
+    }
 }

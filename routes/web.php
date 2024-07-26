@@ -19,6 +19,8 @@ Route::middleware(MustBeAuthUser::class)->group(function() {
     Route::get('/blogs/{blog:slug}', [BlogController::class, 'show']);
     Route::post('/blogs/{blog:slug}/subscribe', [SubscribeController::class, 'toggle']);
     Route::post('/logout', [LogoutController::class, 'destroy']);
+    Route::post('/post', [BlogController::class, 'post']);
+    Route::post('/blogs/post', [BlogController::class, 'store']);
 });
 
 Route::middleware(MustBeGuestUser::class)->group(function() {
