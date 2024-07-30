@@ -4,12 +4,14 @@ use Illuminate\Support\Facades\Route;
 
 use App\Models\Blog;
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\SubscribeController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CommentController;
+use App\Http\Middleware\MustBeAdminUser;
 use App\Http\Middleware\MustBeAuthUser;
 use App\Http\Middleware\MustBeGuestUser;
 
@@ -23,6 +25,12 @@ Route::middleware(MustBeAuthUser::class)->group(function() {
     Route::post('/blogs/post', [BlogController::class, 'store']);
 });
 
+Route::middleware(MustBeAdminUser::class)->group(function() {
+    Route::get('/admin', [AdminController::class, 'index']);
+    Route::get('/admin/blogs', [AdminController::class, 'show']);
+    Route::get('/admin/blogs/{blog}/delete', [AdminController::class, 'destroy']);
+});
+
 Route::middleware(MustBeGuestUser::class)->group(function() {
     Route::get('/register', [RegisterController::class, 'create']);
     Route::post('/register', [RegisterController::class, 'store']);
@@ -32,8 +40,6 @@ Route::middleware(MustBeGuestUser::class)->group(function() {
 
 Route::get('/community', [BlogController::class, 'community']);
 Route::get('/{user:username}', [ProfileController::class, 'show']);
-
-//Comments
 Route::post('/blogs/{blog:slug}/comments', [CommentController::class, 'store']);
 
 
