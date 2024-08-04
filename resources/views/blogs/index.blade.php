@@ -38,6 +38,9 @@
       @forelse ($blogs as $blog)
       <div class="flex flex-col justify-between py-4 sm:px-6 lg:px-4 border border-1 rounded-md">
         <div class="flex flex-col">
+          @if ($blog->photo)
+            <img src="/storage{{$blog->photo}}" alt="Blog photo" class="h-[200px] w-fit place-self-center">
+          @endif
           <h1 class="font-bold text-3xl "><a href="/blogs/{{$blog->slug}}">{{$blog->title}}</a></h1>
           <p class="my-4 ">{{$blog->body}}</p>
         </div>

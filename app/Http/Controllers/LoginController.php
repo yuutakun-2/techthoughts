@@ -40,6 +40,7 @@ class LoginController extends Controller
         //     ]);
         // }
 
+        // Attempt to log in the user if previously logged in before
         if (auth()->attempt([
             'email' => request('email'),
             'password' => request('password')

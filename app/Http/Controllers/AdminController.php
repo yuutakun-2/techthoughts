@@ -39,7 +39,7 @@ class AdminController extends Controller
 
     public function store() {
         request()->validate([
-            'photo' => ['nullable'],
+            'photo' => ['nullable','image'],
             'title' => ['required'],
             'body' => ['required'],
             'slug' => ['required'],
@@ -47,6 +47,7 @@ class AdminController extends Controller
         ]);
 
         $blog = new Blog();
+        $blog->photo = '/' . request('photo')->store('/blogs', 'public');
         $blog->title = request('title');
         $blog->slug = request('slug');
         $blog->body = request('body');
@@ -54,6 +55,6 @@ class AdminController extends Controller
         $blog->user_id = auth()->id();
         $blog->save();
 
-        return back();
+        return redirect('/admin/create');
     }
 }

@@ -1,18 +1,18 @@
 <x-admin-layout>
     <h1 class="font-bold my-3 text-3xl">Blogs Create</h1>
-    <!-- Add photo section here -->
-    <form action="/admin/store" method="POST">
+    <form action="/admin/store" method="POST" enctype="multipart/form-data">
+        <!-- old('value') codes are not working here -->
         @csrf
         <div>
             <label for="photo" class="block text-sm font-medium leading-6 text-gray-900">Add photo</label>
-            <input type="file" class="block w-full rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" name="photo">
-            @error('file')
+            <input type="file" value="{{old('photo')}}" class="block w-full rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" name="photo" id="photo">
+            @error('photo')
                 <p class="text-xs text-red-500 my-2">{{$message}}</p>
             @enderror
         </div>
         <div>
             <label for="title" class="block text-sm font-medium leading-6 text-gray-900">Blog title</label>
-            <input type="text" class="block w-full rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" name="title">
+            <input type="text" id="title" value="{{old('title')}}" class="block w-full rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" name="title">
             @error('title')
                 <p class="text-xs text-red-500 my-2">{{$message}}</p>
             @enderror
