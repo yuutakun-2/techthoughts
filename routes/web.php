@@ -28,6 +28,8 @@ Route::middleware(MustBeAuthUser::class)->group(function() {
 Route::middleware(MustBeAdminUser::class)->group(function() {
     Route::get('/admin', [AdminController::class, 'index']);
     Route::get('/admin/blogs', [AdminController::class, 'show']);
+    Route::get('/admin/create', [AdminController::class, 'create']);
+    Route::post('/admin/store', [AdminController::class, 'store']);
     Route::get('/admin/blogs/{blog}/delete', [AdminController::class, 'destroy']);
 });
 
