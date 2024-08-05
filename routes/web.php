@@ -30,7 +30,9 @@ Route::middleware(MustBeAdminUser::class)->group(function() {
     Route::get('/admin/blogs', [AdminController::class, 'show']);
     Route::get('/admin/create', [AdminController::class, 'create']);
     Route::post('/admin/store', [AdminController::class, 'store']);
-    Route::get('/admin/blogs/{blog}/delete', [AdminController::class, 'destroy']);
+    Route::get('/admin/blogs/{blog}/edit', [AdminController::class, 'edit']);
+    Route::post('/admin/blogs/{blog}/edit', [AdminController::class, 'update']);
+    Route::get('/admin/blogs/{blog}/destroy', [AdminController::class, 'destroy']);
 });
 
 Route::middleware(MustBeGuestUser::class)->group(function() {

@@ -25,8 +25,8 @@
                 </td>
                 <td class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b text-center block lg:table-cell relative lg:static">
                     <span class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Actions</span>
-                    <a href="#" class="text-blue-400 hover:text-blue-600 underline">Edit</a>
-                    <form action="/admin/blogs/{{$blog->id}}/delete">
+                    <a href="/admin/blogs/{{$blog->id}}/edit" class="text-blue-400 hover:text-blue-600 underline">Edit</a>
+                    <form action="/admin/blogs/{{$blog->id}}/destroy">
                         <button type="submit" class="text-blue-400 hover:text-blue-600 underline pl-6">Remove</button>
                     </form>
                 </td>

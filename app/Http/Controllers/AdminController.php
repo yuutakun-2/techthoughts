@@ -7,7 +7,7 @@ use App\Models\Category;
 use App\Models\User;
 
 use Illuminate\Validation\Rule;
-
+use Illuminate\Support\Facades\File;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -22,11 +22,6 @@ class AdminController extends Controller
             'categories' => Category::all(),
             'users' => User::all(),
         ]);
-    }
-
-    public function destroy(Blog $blog) {
-        $blog->delete();
-        return back();
     }
 
     public function create() {
@@ -56,5 +51,44 @@ class AdminController extends Controller
         $blog->save();
 
         return redirect('/admin/create');
+    }
+
+    public function edit(Blog $blog) {
+        return view('admin.edit', [
+            'blog' => $blog,
+            'categories' => Category::all(),
+            'users' => User::all(),
+        ]);
+    }
+
+    public function update(Blog $blog) {
+        request()->validate([
+            'photo' => ['nullable','image'],
+            'title' => ['required'],
+            'body' => ['required'],
+            'slug' => ['required'],
+            'category_id' => ['required', Rule::exists('categories','id')],
+        ]);
+
+        if (request('photo')) {
+            //This saves the photo path as /blogs/photo.jpg
+            $blog->photo = '/' . request('photo')->store('/blogs', 'public');
+        }
+        $blog->title = request('title');
+        $blog->slug = request('slug');
+        $blog->body = request('body');
+        $blog->category_id = request('category_id');
+        $blog->save();
+
+        return redirect('/admin');
+    }
+
+    public function destroy(Blog $blog) {
+        $path = public_path('storage' . $blog->photo);
+        if ($blog->photo && File::exists($path)) {
+            File::delete($path);
+        }
+        $blog->delete();
+        return back();
     }
 }
