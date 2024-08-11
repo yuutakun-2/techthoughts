@@ -15,6 +15,7 @@ use App\Http\Middleware\MustBeAdminUser;
 use App\Http\Middleware\MustBeAuthUser;
 use App\Http\Middleware\MustBeGuestUser;
 
+
 Route::middleware(MustBeAuthUser::class)->group(function() {
     Route::get('/', [BlogController::class, 'home']);
     Route::get('/blogs', [BlogController::class, 'index']);
@@ -23,6 +24,7 @@ Route::middleware(MustBeAuthUser::class)->group(function() {
     Route::post('/logout', [LogoutController::class, 'destroy']);
     Route::post('/post', [BlogController::class, 'post']);
     Route::post('/blogs/post', [BlogController::class, 'store']);
+    Route::delete('/comments/{comment}/destroy', [CommentController::class, 'destroy']);
 });
 
 Route::middleware(MustBeAdminUser::class)->group(function() {
