@@ -42,11 +42,13 @@
       </div>
       <div>
         <p>{{$comment->body}}</p>
+        @if (auth()->user()->can('delete', $comment))  
         <form action="/comments/{{$comment->id}}/destroy" method="POST">
           @csrf
           @method('DELETE')
           <button type="submit" class="block bg-red-500 border rounded-md px-4 py-2 text-white">Delete</button>
         </form>
+        @endif
       </div>
     </div>
     @endforeach

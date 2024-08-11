@@ -8,6 +8,7 @@ use App\Models\Blog;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Gate;
 
 class CommentController extends Controller
 {
@@ -41,6 +42,21 @@ class CommentController extends Controller
     }   
     
     public function destroy(Comment $comment) {
+        // if the current login user is not the comment owner
+
+        // Code below is simple authorization without using gate or policy
+        // if (auth()->id() !== $comment->user_id) {
+        //     abort(403);
+        // }
+
+        // Code below is using gate
+        // if (!Gate::allows('comment-owner', $comment)) {
+        //     abort(403);
+        // }
+
+        if (!auth()->user()->can('delete', $comment)) {
+            return abort(403);
+        }
         $comment->delete();
         return back();
     }
