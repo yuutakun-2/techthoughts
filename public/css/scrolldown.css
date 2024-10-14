@@ -1,12 +1,7 @@
-body {
-    background-color: #000;
-    overflow: hidden;
-}
-
 .scroll-down {
     position: absolute;
     left: 50%;
-    bottom: 40px;
+    bottom: 80px;
     display: block;
     text-align: center;
     font-size: 20px;
@@ -21,6 +16,16 @@ body {
     left: 50%;
     transform: translate(-50%, 0%) rotate(45deg);
     animation: fade_move_down 4s ease-in-out infinite;
+}
+
+#logo_text {
+    position: absolute;
+    left: 50%;
+    bottom: 120px;
+    transform: translate(-50%, -50%);
+    color: #fff;
+    font-size: large;
+    font-family: "inter", sans-serif;
 }
 
 /*animated scroll arrow animation*/

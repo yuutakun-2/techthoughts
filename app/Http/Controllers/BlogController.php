@@ -10,7 +10,11 @@ use App\Models\User;
 class BlogController extends Controller
 {
     public function home() {
-        return view ('blogs.home');
+        return view ('blogs.home', [
+            'blogs'=> Blog::latest()->filter(request(['query', 'category_id', 'user_id']))->paginate(6),
+            'categories' => Category::all(),
+            'users' => User::all(),
+        ]);
     }
     //
     public function index() {
