@@ -36,19 +36,21 @@
     <!-- Blogs cards -->
     <div class="grid grid-cols-3 gap-4">
       @forelse ($blogs as $blog)
-      <div class="flex flex-col justify-between py-4 sm:px-6 lg:px-4 border border-1 rounded-md">
-        <div class="flex flex-col">
-          @if ($blog->photo)
-            <img src="/storage{{$blog->photo}}" alt="Blog photo" class="h-[200px] w-fit place-self-center">
-          @endif
-          <h1 class="font-bold text-3xl "><a href="/blogs/{{$blog->slug}}">{{$blog->title}}</a></h1>
-          <p class="my-4 ">{{$blog->body}}</p>
+      <a href="/blogs/{{$blog->slug}}" class="group">
+        <div class="flex flex-col h-full justify-between py-4 sm:px-6 lg:px-4 border border-2 border-gray-300 rounded-md hover:bg-blue-300 hover:shadow-lg hover:-translate-y-1 transition-all">
+          <div class="flex flex-col">
+            @if ($blog->photo)
+              <img src="/storage{{$blog->photo}}" alt="Blog photo" class="h-[200px] w-fit place-self-center">
+            @endif
+            <h1 class="font-bold text-3xl">{{$blog->title}}</h1>
+            <p class="my-4">{{$blog->body}}</p>
+          </div>
+          <div class="flex flex-col">
+            <p class="my-2">Category - <span class="px-2 py-1 rounded-md bg-blue-500 text-white">{{$blog->category->name}}</span></p>
+            <p class="my-2">User - <span class="px-2 py-1 rounded-md bg-green-500 text-white">{{$blog->user->name}}</span></p>
+          </div>
         </div>
-        <div class="flex flex-col">
-          <p class="my-2">Category - <span class="px-2 py-1 rounded-md bg-blue-500 text-white">{{$blog->category->name}}</span></p>
-          <p class="my-2">User - <span class="px-2 py-1 rounded-md bg-green-500 text-white">{{$blog->user->name}}</span></p>
-        </div>
-      </div>
+      </a>
       @empty
       <p>No results.</p>
       @endforelse
