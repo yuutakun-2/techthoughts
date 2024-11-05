@@ -1,33 +1,49 @@
 <x-layout>
     <section class="my-4 mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
         <div class="grid grid-cols-2 gap-x-8">
-            <div class="flex flex-col justify-center items-center gap-4">
-                <h1 class="font-bold text-2xl">Insert your image here</h1>
-                <img src="https://upload.wikimedia.org/wikipedia/commons/1/18/Bugatti_Chiron_1.jpg" alt="">
+             <form action="/blogs/post" method="POST" enctype="multipart/form-data"> <!-- enctype is for when form has files -->
+            <!-- old('value') codes are not working here -->
+            @csrf
+            <div>
+                <label for="photo" class="block text-sm font-medium leading-6 text-gray-900">Add photo</label>
+                <input type="file" value="{{old('photo')}}" class="block w-full rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" name="photo" id="photo">
+                @error('photo')
+                    <p class="text-xs text-red-500 my-2">{{$message}}</p>
+                @enderror
             </div>
-            <!-- <form action="/blogs/post" method="POST">
-            @csrf -->
-                <div class="flex flex-col items-center">
-                    <div class="my-2 flex flex-col gap-2 w-full">
-                        <label for="title_text" class="font-bold">Title</label>
-                        <textarea class="border-2 rounded-md h-8" name="title_text" id=""></textarea>
-                    </div>
-                    <div class="my-2 flex flex-col gap-2 w-full">
-                        <label for="category" class="font-bold">Category</label>
-                            <select name="category" id="category" class="rounded-md border-2 p-2">
-                                <option value="">Choose your category</option>
-                                @foreach ($categories as $category)
-                                <option value="{{$category->id}}" {{ request('category_id') == $category->id ? 'selected' : '' }}>{{$category->name}}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                        <div class="my-2 flex flex-col gap-2 w-full">
-                            <label for="body_text" class="font-bold">Body</label>
-                            <textarea class="border-2 rounded-md h-48" name="body_text" id="body_text"></textarea>
-                        </div>
-                        <button class="text-white-500 bg-blue-500 rounded-md w-24 p-2">Submit</button>
-                    </div>
-                </div>
-            <!-- </form> -->
+            <div>
+                <label for="title" class="block text-sm font-medium leading-6 text-gray-900">Blog title</label>
+                <input type="text" id="title" value="{{old('title')}}" class="block w-full rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" name="title">
+                @error('title')
+                    <p class="text-xs text-red-500 my-2">{{$message}}</p>
+                @enderror
+            </div>
+            <!-- <div>
+                <label for="slug" class="block text-sm font-medium leading-6 text-gray-900">Blog slug</label>
+                <input type="text" class="block w-full rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" name="slug">
+                @error('slug')
+                    <p class="text-xs text-red-500 my-2">{{$message}}</p>
+                @enderror
+            </div> -->
+            <div>
+                <label for="body" class="block text-sm font-medium leading-6 text-gray-900">Blog body</label>
+                <textarea type="paragraph" class="block w-full rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" rows="10" name="body">Hehe</textarea>
+                @error('body')
+                    <p class="text-xs text-red-500 my-2">{{$message}}</p>
+                @enderror
+            </div>
+            <div>
+                <label for="category_id" class="block text-sm font-medium leading-6 text-gray-900">Blog category</label>
+                <select name="category_id" id="category_id">
+                    @foreach ($categories as $category)
+                    <option value="{{$category->id}}">{{$category->name}}</option>
+                    @endforeach
+                </select>
+                @error('category_id')
+                    <p class="text-xs text-red-500 my-2">{{$message}}</p>
+                @enderror
+            </div>
+            <button type="submit" class="text-white hover:text-black-600 px-6 py-2 bg-blue-600 rounded-md">Submit</button>
+            </form>
     </section>
 </x-layout>

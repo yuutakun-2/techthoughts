@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\Blog;
 use App\Models\Category;
 use App\Models\User;
+use Illuminate\Support\Str;
+use Illuminate\Validation\Rule;
 
 class BlogController extends Controller
 {
@@ -46,14 +48,23 @@ class BlogController extends Controller
     }
 
     public function store() {
-        //store title
-        // request()->validate([
-        //     'title' => 'required',
-        //     'body' => 'required',
-        // ])
-        //check category
-        //add image
-        //store body
-        //return back 
-    }
+        request()->validate([
+            'photo' => ['nullable','image'],
+            'title' => ['required'],
+            'body' => ['required'],
+            'slug' => ['nullable'],
+            'category_id' => ['required', Rule::exists('categories','id')],
+        ]);
+
+        $blog = new Blog();
+        $blog->photo = '/' . request('photo')->store('/blogs', 'public');
+        $blog->title = request('title');
+        $blog->slug = Str::slug(request('title'));
+        $blog->body = request('body');
+        $blog->category_id = request('category_id');
+        $blog->user_id = auth()->id();
+        $blog->save();
+
+        return redirect('/blogs');
+}
 }

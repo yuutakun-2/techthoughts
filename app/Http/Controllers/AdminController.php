@@ -50,7 +50,7 @@ class AdminController extends Controller
         $blog->user_id = auth()->id();
         $blog->save();
 
-        return redirect('/admin/create');
+        return redirect('/admin/blogs');
     }
 
     public function edit(Blog $blog) {

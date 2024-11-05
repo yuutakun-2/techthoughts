@@ -37,7 +37,7 @@
     <div class="grid grid-cols-3 gap-4">
       @forelse ($blogs as $blog)
       <a href="/blogs/{{$blog->slug}}" class="group">
-        <div class="flex flex-col h-full justify-between py-4 sm:px-6 lg:px-4 border border-2 border-gray-300 rounded-md hover:bg-blue-300 hover:shadow-lg hover:-translate-y-1 transition-all">
+        <div class="card">
           <div class="flex flex-col">
             @if ($blog->photo)
               <img src="/storage{{$blog->photo}}" alt="Blog photo" class="h-[200px] w-fit place-self-center">
