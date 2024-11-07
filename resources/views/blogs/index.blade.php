@@ -42,8 +42,8 @@
             @if ($blog->photo)
               <img src="/storage{{$blog->photo}}" alt="Blog photo" class="h-[200px] w-fit place-self-center">
             @endif
-            <h1 class="font-bold text-3xl">{{$blog->title}}</h1>
-            <p class="my-4">{{$blog->body}}</p>
+            <h1 class="font-bold text-3xl my-4">{{$blog->title}}</h1>
+            <p class="my-4 line-clamp-4">{{$blog->body}}</p>
           </div>
           <div class="flex flex-col">
             <p class="my-2">Category - <span class="px-2 py-1 rounded-md bg-blue-500 text-white">{{$blog->category->name}}</span></p>

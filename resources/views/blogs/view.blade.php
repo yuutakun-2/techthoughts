@@ -1,4 +1,3 @@
-
 <x-layout title="View Blade">
   <!-- Create a grid container with two columns -->
   <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 grid grid-cols-2 gap-8 py-8 my-4 h-[36rem] border border-2 border-gray-500 rounded-xl">
