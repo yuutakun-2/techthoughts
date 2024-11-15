@@ -4,13 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.tailwindcss.com" defer></script>
     <link rel="stylesheet" href="{{ asset('css/card.css') }}">
     <link rel="stylesheet" href="{{ asset('css/profile-dropdown.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/theme.css') }}">
     <script src=" {{ asset('js/profile-dropdown.js') }}" defer></script>
+    <script src=" {{ asset('js/theme-toggle.js') }}" defer></script>
 </head>
 <body>
-  <nav class="bg-gray-800">
+  <nav class="">
     <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
       <div class="relative flex h-16 items-center justify-between">
         <div class="flex flex-1 justify-center gap-x-4 sm:items-stretch sm:justify-start">
@@ -46,7 +48,7 @@
                 <path stroke-linecap="round" stroke-linejoin="round" d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0" />
               </svg>
             </button>
-            <button type="button" class="relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white">
+            <button class="relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white items-center justify-center">
               <span class="absolute -inset-1.5"></span>
               <span class="sr-only">View messages</span>
               <svg class="svg-icon h-8 w-8" style="vertical-align: middle;fill: currentColor;overflow: hidden;" viewBox="0 0 1071 1024" version="1.1"  xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M395.701 434.549c0 25.716-18.369 47.759-47.759 47.759-25.716 0-47.759-22.043-47.759-47.759s22.042-47.759 47.759-47.759c29.391 0 47.759 22.043 47.759 47.759z m547.394-25.716c0-198.385-183.69-360.032-411.465-360.032-231.449 0-415.138 161.647-415.138 360.032 0 117.562 66.129 227.775 176.341 293.903v113.888c0 11.021 7.348 18.369 14.694 22.042h7.348c7.348 0 11.021 0 14.694-3.674l51.434-33.065 3.674-3.674 58.78-36.739c29.391 3.674 58.78 7.348 88.171 7.348 227.775 0 411.465-161.647 411.465-360.032zM325.898 673.346c-102.865-58.78-165.321-157.972-165.321-264.513 0-172.669 165.321-315.946 371.053-315.946 202.058 0 367.379 143.278 367.379 315.946 0 172.669-165.321 315.946-367.379 315.946-29.391 0-58.78-3.674-88.171-7.348-7.348-3.674-14.694 0-18.369 0l-69.801 47.759-18.369 11.021v-84.497c0-7.348-3.674-14.694-11.021-18.369zM586.737 423.53c0 25.716-22.042 47.759-47.759 47.759s-47.759-22.042-47.759-47.759c0-29.391 22.042-47.759 47.759-47.759 25.716 0 47.759 18.369 47.759 47.759z m183.691 0c0 25.716-18.369 47.759-47.759 47.759-25.716 0-47.759-22.042-47.759-47.759 0-29.391 22.042-47.759 47.759-47.759 29.391 0 47.759 18.369 47.759 47.759z"  /></svg>
@@ -68,12 +70,14 @@
               <div class="dropdown_menu p-4 rounded-md bor">
                 <!-- Dropdown lists -->
                 <div id="dropdown_list_user" class="dropdown-list mx-2">
+                  @auth
                   <a href='/{{auth()->user()->username}}'>
                     <div class="flex gap-4 items-center justify-start">
                       <img class="h-8 w-8 rounded-full" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="">
                       <span class="text-white font-semibold text-lg">{{auth()->user()->name}}</span>
                     </div>
                   </a>
+                  @endauth
                 </div>
                 <div class="line-divider"></div>
                 <a id="dropdown_list_settings" class="dropdown-list" href='/settings'>
@@ -83,13 +87,13 @@
                   </div>
                   <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#FFFFFF" viewBox="0 0 256 256"><path d="M181.66,133.66l-80,80a8,8,0,0,1-11.32-11.32L164.69,128,90.34,53.66a8,8,0,0,1,11.32-11.32l80,80A8,8,0,0,1,181.66,133.66Z"></path></svg>
                 </a>
-                <a id="dropdown_list_display" class="dropdown-list" href='/display'>
+                <button type="button" id="theme-toggle" class="dropdown-list">
                   <div class="flex gap-4 items-center justify-between text-white">
                     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#FFFFFF" viewBox="0 0 256 256"><path d="M233.54,142.23a8,8,0,0,0-8-2,88.08,88.08,0,0,1-109.8-109.8,8,8,0,0,0-10-10,104.84,104.84,0,0,0-52.91,37A104,104,0,0,0,136,224a103.09,103.09,0,0,0,62.52-20.88,104.84,104.84,0,0,0,37-52.91A8,8,0,0,0,233.54,142.23ZM188.9,190.34A88,88,0,0,1,65.66,67.11a89,89,0,0,1,31.4-26A106,106,0,0,0,96,56,104.11,104.11,0,0,0,200,160a106,106,0,0,0,14.92-1.06A89,89,0,0,1,188.9,190.34Z"></path></svg>
                     <span class="">Display</span>
                   </div>
                   <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#FFFFFF" viewBox="0 0 256 256"><path d="M181.66,133.66l-80,80a8,8,0,0,1-11.32-11.32L164.69,128,90.34,53.66a8,8,0,0,1,11.32-11.32l80,80A8,8,0,0,1,181.66,133.66Z"></path></svg>
-                </a>
+                </button>
                 <div id="dropdown_list_logout" class="dropdown-list">
                   <form action="/logout" method="POST">
                     <div class="flex gap-4 items-center justify-start text-white">
@@ -114,6 +118,18 @@
       </div>
     </div>
   </nav>
+
+  <div class="bg-white dark:bg-slate-800 rounded-lg px-6 py-8 ring-1 ring-slate-900/5 shadow-xl">
+    <div>
+      <span class="inline-flex items-center justify-center p-2 bg-indigo-500 rounded-md shadow-lg">
+        <svg class="h-6 w-6 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><!-- ... --></svg>
+      </span>
+    </div>
+    <h3 class="text-slate-900 dark:text-white mt-5 text-base font-medium tracking-tight">Writes Upside-Down</h3>
+    <p class="text-slate-500 dark:text-slate-400 mt-2 text-sm">
+      The Zero Gravity Pen can be used to write in any orientation, including upside-down. It even works in outer space.
+    </p>
+  </div>
 
   {{$slot}}
 

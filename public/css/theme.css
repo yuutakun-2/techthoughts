@@ -1,0 +1,7 @@
+nav {
+    background-color: rgb(18, 81, 60);
+}
+
+nav.dark {
+    background-color: black;
+}
