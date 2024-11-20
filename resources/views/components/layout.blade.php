@@ -27,13 +27,16 @@
           </div>
         </div>
         <!-- Search box -->
+        <!-- Making search box search after clicking enter on the keyboard => Wrap the elements in a form, method is get -->
         <div class="relative">
-          <input type="text" placeholder="Search" class="py-2 px-4 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 peer">
-          <div class="absolute inset-y-0 right-4 pl-3 flex items-center pointer-events-none peer-focus:hidden">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="w-[20px] h-auto text-blue-500">
-                  <path fill="currentColor" d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z"/>
-              </svg>
-          </div>
+          <form action="" method="GET">
+            <input type="search" name="query" value="{{request('query')}}" placeholder="Search blogs" class="py-2 px-4 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 peer">
+            <div class="absolute inset-y-0 right-4 pl-3 flex items-center pointer-events-none peer-focus:hidden">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="w-[20px] h-auto text-blue-500">
+                    <path fill="currentColor" d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z"/>
+                </svg>
+            </div>
+          </form>
         </div>
         <!-- Navbar Right Side -->
         <div class="absolute inset-y-0 right-0 flex items-center gap-2 pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
@@ -118,18 +121,6 @@
       </div>
     </div>
   </nav>
-
-  <div class="bg-white dark:bg-slate-800 rounded-lg px-6 py-8 ring-1 ring-slate-900/5 shadow-xl">
-    <div>
-      <span class="inline-flex items-center justify-center p-2 bg-indigo-500 rounded-md shadow-lg">
-        <svg class="h-6 w-6 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><!-- ... --></svg>
-      </span>
-    </div>
-    <h3 class="text-slate-900 dark:text-white mt-5 text-base font-medium tracking-tight">Writes Upside-Down</h3>
-    <p class="text-slate-500 dark:text-slate-400 mt-2 text-sm">
-      The Zero Gravity Pen can be used to write in any orientation, including upside-down. It even works in outer space.
-    </p>
-  </div>
 
   {{$slot}}
 
