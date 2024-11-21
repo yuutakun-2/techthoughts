@@ -3,12 +3,10 @@
   <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 grid grid-cols-2 gap-8 py-8 my-4 h-[36rem] border border-2 border-gray-500 rounded-xl">
     <!-- Left half: Photo -->
     <!-- Make this column sticky so it doesn't move when scrolling -->
-    <div class="sticky top-0 flex flex-col justify-between">
-      <div class="max-h-[560px]">
-        <!-- Display the blog photo -->
-        @if ($blog->photo)
-          <img src="/storage{{$blog->photo}}" alt="Blog photo" class="h-full w-full object-contain">
-        @endif
+    <div class="sticky top-0 flex flex-col justify-between max-h-[560px]">
+      @if ($blog->photo)
+      <div class="w-full h-auto overflow-hidden bg-center" style="background-image: url('{{$blog->photo}}')">
+      @endif
       </div>
       <!-- Display the blog category and user -->
       <div class="flex gap-4 my-4">

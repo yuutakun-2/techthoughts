@@ -47,6 +47,16 @@ class BlogController extends Controller
         ]);
     }
 
+    // Generating a unique slug
+    public static function uniqueSlug($title) {
+        // create initial slug
+        $slug = Str::slug($title);
+        // check if slug exists
+        $count = Blog::where('slug' , 'LIKE', $slug)->count();
+        // if yes? new unique slug if not: just old slug
+        return $count ? "{$slug}-{$count}" : $slug; // ${} or {$}?
+    }
+
     public function store() {
         request()->validate([
             'photo' => ['nullable','image'],
@@ -57,9 +67,9 @@ class BlogController extends Controller
         ]);
 
         $blog = new Blog();
-        $blog->photo = '/' . request('photo')->store('/blogs', 'public');
+        if (request('photo')) {$blog->photo = '/' . request('photo')->store('/blogs', 'public');}
         $blog->title = request('title');
-        $blog->slug = Str::slug(request('title'));
+        $blog->slug = BlogController::uniqueSlug(request('title'));
         $blog->body = request('body');
         $blog->category_id = request('category_id');
         $blog->user_id = auth()->id();
