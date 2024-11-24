@@ -1,0 +1,20 @@
+.carousel-box {
+    max-height: 60vh;
+}
+
+.box {
+    display: flex;
+    flex-direction: column;
+}
+
+.box-image {
+    height: 60vh;
+}
+
+#box2 {
+    display: none;
+}
+
+#box3 {
+    display: none;
+}

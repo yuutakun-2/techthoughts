@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="{{ asset('css/card.css') }}">
     <link rel="stylesheet" href="{{ asset('css/profile-dropdown.css') }}">
     <link rel="stylesheet" href="{{ asset('css/theme.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/carousel.css') }}">
     <script src=" {{ asset('js/profile-dropdown.js') }}" defer></script>
     <script src=" {{ asset('js/theme-toggle.js') }}" defer></script>
 </head>
