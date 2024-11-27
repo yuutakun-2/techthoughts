@@ -1,20 +1,50 @@
 .carousel-box {
     max-height: 60vh;
-}
-
-.box {
+    position: relative;
     display: flex;
     flex-direction: column;
 }
 
+.box {
+    display: none;
+    position: absolute;
+    flex-direction: column;
+    top: 0;
+    left: 100%;
+    width: 100%;
+    overflow: hidden;
+}
+
+.box.active {
+    display: flex;
+    left: 0;
+    animation: slideNext 0.5s linear;
+}
+
+.box.back {
+    display: flex;
+    left: -100%;
+    animation: slideBack 0.5s linear;
+}
+
+@keyframes slideNext {
+    0% {
+        left: 100%;
+    }
+    100% {
+        left: 0;
+    }
+}
+
+@keyframes slideBack {
+    0% {
+        left: 0;
+    }
+    100% {
+        left: -100%;
+    }
+}
+
 .box-image {
     height: 60vh;
-}
-
-#box2 {
-    display: none;
-}
-
-#box3 {
-    display: none;
 }
